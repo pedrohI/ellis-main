@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  api:
+    build: .
+    container_name: escola_api
+    ports:
+      - "8000:8000"
+    volumes:
+      # Monta o diretório atual no contêiner para hot-reloading
+      # e para persistir o banco de dados SQLite (escola.db) no host.
+      - .:/app
+    # Comando para desenvolvimento com recarregamento automático
+    command: uvicorn app:app --host 0.0.0.0 --port 8000 --reload
